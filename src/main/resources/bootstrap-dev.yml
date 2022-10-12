@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: service-template
+    workspace: ${user.home}/workspaces/${spring.application.name}
+  cloud:
+    config:
+      enabled: false

@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: service-template
+    workspace: /opt/workspace
+  cloud:
+    config:
+      enabled: true
+      uri: http://localhost:8081/config
+      fail-fast: true

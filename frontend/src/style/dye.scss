@@ -1,0 +1,94 @@
+@import './variables.scss';
+@import './element-variables.scss';
+
+
+.lightMode {
+  background: $mainBg01;
+  color: $mainTxt01;
+
+  .sidebar-container {
+    .sidebar-logo-container {
+      transition: .6s;
+      &:hover {
+        background: $mainBg02;
+      }
+    }
+  }
+
+  .el-sub-menu.is-active > .el-sub-menu__title {
+    color: $--color-primary;
+  }
+
+  .main-container {
+    .navbar {
+      .hamburger-container, .right-menu-item {
+        transition: .6s;
+        color: $mainTxt01;
+        &:hover {
+          background: $mainBg02;
+        }
+      }
+    }
+
+    .tags-view-container {
+
+    }
+
+    .app-main {
+      .app-container {
+        background-color: $mainBg00;
+      }
+    }
+  }
+}
+
+
+.darkMode {
+  background: $darkBg01;
+  color: $darkTxt01;
+
+  .el-picker-panel [slot=sidebar], .el-picker-panel__sidebar, .el-picker-panel__footer, .el-picker-panel__body, .el-input__inner input, .el-input .el-input__count .el-input__count-inner, .el-dropdown-menu {
+    background: $darkBg01;
+    color: $darkTxt01;
+  }
+
+  .sidebar-container {
+    .sidebar-logo-container {
+      transition: .6s;
+      &:hover {
+        background: $darkBg02;
+      }
+    }
+  }
+
+  .el-sub-menu.is-active > .el-sub-menu__title {
+    color: $--color-primary;
+  }
+
+  &.hideSidebar .sidebar-container {
+    
+  }
+
+  .main-container {
+    .navbar {
+      .hamburger-container, .right-menu-item {
+        transition: .6s;
+        color: $darkTxt01;
+        &:hover {
+          background: $darkBg02;
+        }
+      }
+    }
+
+    .tags-view-container {
+
+    }
+
+    .app-main {
+      .app-container {
+        background-color: $darkBg00;
+      }
+    }
+  }
+}
+
