@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scfsoft.dao.mybatis.SpTeacherMapper">
+  <resultMap id="BaseResultMap" type="com.scfsoft.domain.SpTeacher">
+    <!--@mbg.generated-->
+    <!--@Table sp_teacher-->
+    <id column="t_id" jdbcType="VARCHAR" property="tId" />
+    <result column="t_name" jdbcType="VARCHAR" property="tName" />
+    <result column="t_pass" jdbcType="VARCHAR" property="tPass" />
+    <result column="t_sex" jdbcType="VARCHAR" property="tSex" />
+    <result column="t_nation" jdbcType="VARCHAR" property="tNation" />
+    <result column="t_pol_stat" jdbcType="VARCHAR" property="tPolStat" />
+    <result column="t_idcard" jdbcType="VARCHAR" property="tIdcard" />
+    <result column="t_address" jdbcType="VARCHAR" property="tAddress" />
+    <result column="t_job_time" jdbcType="DATE" property="tJobTime" />
+    <result column="t_edu_bg" jdbcType="VARCHAR" property="tEduBg" />
+    <result column="t_gra_ins" jdbcType="VARCHAR" property="tGraIns" />
+    <result column="t_phone" jdbcType="VARCHAR" property="tPhone" />
+    <result column="t_course" jdbcType="VARCHAR" property="tCourse" />
+    <result column="t_pic_path" jdbcType="VARCHAR" property="tPicPath" />
+    <result column="delflag" jdbcType="BOOLEAN" property="delflag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    t_id, t_name, t_pass, t_sex, t_nation, t_pol_stat, t_idcard, t_address, t_job_time, 
+    t_edu_bg, t_gra_ins, t_phone, t_course, t_pic_path, delflag
+  </sql>
+  <select id="selectByExample" parameterType="com.scfsoft.domain.SpTeacherExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sp_teacher
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sp_teacher
+    where t_id = #{tId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from sp_teacher
+    where t_id = #{tId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scfsoft.domain.SpTeacherExample">
+    <!--@mbg.generated-->
+    delete from sp_teacher
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scfsoft.domain.SpTeacher">
+    <!--@mbg.generated-->
+    insert into sp_teacher (t_id, t_name, t_pass, 
+      t_sex, t_nation, t_pol_stat, 
+      t_idcard, t_address, t_job_time, 
+      t_edu_bg, t_gra_ins, t_phone, 
+      t_course, t_pic_path, delflag
+      )
+    values (#{tId,jdbcType=VARCHAR}, #{tName,jdbcType=VARCHAR}, #{tPass,jdbcType=VARCHAR}, 
+      #{tSex,jdbcType=VARCHAR}, #{tNation,jdbcType=VARCHAR}, #{tPolStat,jdbcType=VARCHAR}, 
+      #{tIdcard,jdbcType=VARCHAR}, #{tAddress,jdbcType=VARCHAR}, #{tJobTime,jdbcType=DATE}, 
+      #{tEduBg,jdbcType=VARCHAR}, #{tGraIns,jdbcType=VARCHAR}, #{tPhone,jdbcType=VARCHAR}, 
+      #{tCourse,jdbcType=VARCHAR}, #{tPicPath,jdbcType=VARCHAR}, #{delflag,jdbcType=BOOLEAN}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scfsoft.domain.SpTeacher">
+    <!--@mbg.generated-->
+    insert into sp_teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="tName != null">
+        t_name,
+      </if>
+      <if test="tPass != null">
+        t_pass,
+      </if>
+      <if test="tSex != null">
+        t_sex,
+      </if>
+      <if test="tNation != null">
+        t_nation,
+      </if>
+      <if test="tPolStat != null">
+        t_pol_stat,
+      </if>
+      <if test="tIdcard != null">
+        t_idcard,
+      </if>
+      <if test="tAddress != null">
+        t_address,
+      </if>
+      <if test="tJobTime != null">
+        t_job_time,
+      </if>
+      <if test="tEduBg != null">
+        t_edu_bg,
+      </if>
+      <if test="tGraIns != null">
+        t_gra_ins,
+      </if>
+      <if test="tPhone != null">
+        t_phone,
+      </if>
+      <if test="tCourse != null">
+        t_course,
+      </if>
+      <if test="tPicPath != null">
+        t_pic_path,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="tName != null">
+        #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tPass != null">
+        #{tPass,jdbcType=VARCHAR},
+      </if>
+      <if test="tSex != null">
+        #{tSex,jdbcType=VARCHAR},
+      </if>
+      <if test="tNation != null">
+        #{tNation,jdbcType=VARCHAR},
+      </if>
+      <if test="tPolStat != null">
+        #{tPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="tIdcard != null">
+        #{tIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="tAddress != null">
+        #{tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tJobTime != null">
+        #{tJobTime,jdbcType=DATE},
+      </if>
+      <if test="tEduBg != null">
+        #{tEduBg,jdbcType=VARCHAR},
+      </if>
+      <if test="tGraIns != null">
+        #{tGraIns,jdbcType=VARCHAR},
+      </if>
+      <if test="tPhone != null">
+        #{tPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tCourse != null">
+        #{tCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="tPicPath != null">
+        #{tPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scfsoft.domain.SpTeacherExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from sp_teacher
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update sp_teacher
+    <set>
+      <if test="record.tId != null">
+        t_id = #{record.tId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tName != null">
+        t_name = #{record.tName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPass != null">
+        t_pass = #{record.tPass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tSex != null">
+        t_sex = #{record.tSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tNation != null">
+        t_nation = #{record.tNation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPolStat != null">
+        t_pol_stat = #{record.tPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tIdcard != null">
+        t_idcard = #{record.tIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tAddress != null">
+        t_address = #{record.tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tJobTime != null">
+        t_job_time = #{record.tJobTime,jdbcType=DATE},
+      </if>
+      <if test="record.tEduBg != null">
+        t_edu_bg = #{record.tEduBg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tGraIns != null">
+        t_gra_ins = #{record.tGraIns,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPhone != null">
+        t_phone = #{record.tPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tCourse != null">
+        t_course = #{record.tCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tPicPath != null">
+        t_pic_path = #{record.tPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delflag != null">
+        delflag = #{record.delflag,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update sp_teacher
+    set t_id = #{record.tId,jdbcType=VARCHAR},
+      t_name = #{record.tName,jdbcType=VARCHAR},
+      t_pass = #{record.tPass,jdbcType=VARCHAR},
+      t_sex = #{record.tSex,jdbcType=VARCHAR},
+      t_nation = #{record.tNation,jdbcType=VARCHAR},
+      t_pol_stat = #{record.tPolStat,jdbcType=VARCHAR},
+      t_idcard = #{record.tIdcard,jdbcType=VARCHAR},
+      t_address = #{record.tAddress,jdbcType=VARCHAR},
+      t_job_time = #{record.tJobTime,jdbcType=DATE},
+      t_edu_bg = #{record.tEduBg,jdbcType=VARCHAR},
+      t_gra_ins = #{record.tGraIns,jdbcType=VARCHAR},
+      t_phone = #{record.tPhone,jdbcType=VARCHAR},
+      t_course = #{record.tCourse,jdbcType=VARCHAR},
+      t_pic_path = #{record.tPicPath,jdbcType=VARCHAR},
+      delflag = #{record.delflag,jdbcType=BOOLEAN}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scfsoft.domain.SpTeacher">
+    <!--@mbg.generated-->
+    update sp_teacher
+    <set>
+      <if test="tName != null">
+        t_name = #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tPass != null">
+        t_pass = #{tPass,jdbcType=VARCHAR},
+      </if>
+      <if test="tSex != null">
+        t_sex = #{tSex,jdbcType=VARCHAR},
+      </if>
+      <if test="tNation != null">
+        t_nation = #{tNation,jdbcType=VARCHAR},
+      </if>
+      <if test="tPolStat != null">
+        t_pol_stat = #{tPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="tIdcard != null">
+        t_idcard = #{tIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="tAddress != null">
+        t_address = #{tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tJobTime != null">
+        t_job_time = #{tJobTime,jdbcType=DATE},
+      </if>
+      <if test="tEduBg != null">
+        t_edu_bg = #{tEduBg,jdbcType=VARCHAR},
+      </if>
+      <if test="tGraIns != null">
+        t_gra_ins = #{tGraIns,jdbcType=VARCHAR},
+      </if>
+      <if test="tPhone != null">
+        t_phone = #{tPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tCourse != null">
+        t_course = #{tCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="tPicPath != null">
+        t_pic_path = #{tPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    where t_id = #{tId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scfsoft.domain.SpTeacher">
+    <!--@mbg.generated-->
+    update sp_teacher
+    set t_name = #{tName,jdbcType=VARCHAR},
+      t_pass = #{tPass,jdbcType=VARCHAR},
+      t_sex = #{tSex,jdbcType=VARCHAR},
+      t_nation = #{tNation,jdbcType=VARCHAR},
+      t_pol_stat = #{tPolStat,jdbcType=VARCHAR},
+      t_idcard = #{tIdcard,jdbcType=VARCHAR},
+      t_address = #{tAddress,jdbcType=VARCHAR},
+      t_job_time = #{tJobTime,jdbcType=DATE},
+      t_edu_bg = #{tEduBg,jdbcType=VARCHAR},
+      t_gra_ins = #{tGraIns,jdbcType=VARCHAR},
+      t_phone = #{tPhone,jdbcType=VARCHAR},
+      t_course = #{tCourse,jdbcType=VARCHAR},
+      t_pic_path = #{tPicPath,jdbcType=VARCHAR},
+      delflag = #{delflag,jdbcType=BOOLEAN}
+    where t_id = #{tId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sp_teacher
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="t_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_pass = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tPass,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_sex = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tSex,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_nation = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tNation,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_pol_stat = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tPolStat,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_idcard = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tIdcard,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tAddress,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_job_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tJobTime,jdbcType=DATE}
+        </foreach>
+      </trim>
+      <trim prefix="t_edu_bg = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tEduBg,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_gra_ins = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tGraIns,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tPhone,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_course = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tCourse,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="t_pic_path = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tPicPath,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="delflag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.delflag,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+    </trim>
+    where t_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.tId,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sp_teacher
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="t_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tName != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_pass = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tPass != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tPass,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_sex = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tSex != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tSex,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_nation = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tNation != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tNation,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_pol_stat = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tPolStat != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tPolStat,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_idcard = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tIdcard != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tIdcard,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tAddress != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tAddress,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_job_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tJobTime != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tJobTime,jdbcType=DATE}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_edu_bg = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tEduBg != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tEduBg,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_gra_ins = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tGraIns != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tGraIns,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_phone = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tPhone != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tPhone,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_course = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tCourse != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tCourse,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="t_pic_path = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.tPicPath != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.tPicPath,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delflag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.delflag != null">
+            when t_id = #{item.tId,jdbcType=VARCHAR} then #{item.delflag,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where t_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.tId,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into sp_teacher
+    (t_id, t_name, t_pass, t_sex, t_nation, t_pol_stat, t_idcard, t_address, t_job_time, 
+      t_edu_bg, t_gra_ins, t_phone, t_course, t_pic_path, delflag)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.tId,jdbcType=VARCHAR}, #{item.tName,jdbcType=VARCHAR}, #{item.tPass,jdbcType=VARCHAR}, 
+        #{item.tSex,jdbcType=VARCHAR}, #{item.tNation,jdbcType=VARCHAR}, #{item.tPolStat,jdbcType=VARCHAR}, 
+        #{item.tIdcard,jdbcType=VARCHAR}, #{item.tAddress,jdbcType=VARCHAR}, #{item.tJobTime,jdbcType=DATE}, 
+        #{item.tEduBg,jdbcType=VARCHAR}, #{item.tGraIns,jdbcType=VARCHAR}, #{item.tPhone,jdbcType=VARCHAR}, 
+        #{item.tCourse,jdbcType=VARCHAR}, #{item.tPicPath,jdbcType=VARCHAR}, #{item.delflag,jdbcType=BOOLEAN}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.scfsoft.domain.SpTeacher">
+    <!--@mbg.generated-->
+    insert into sp_teacher
+    (t_id, t_name, t_pass, t_sex, t_nation, t_pol_stat, t_idcard, t_address, t_job_time, 
+      t_edu_bg, t_gra_ins, t_phone, t_course, t_pic_path, delflag)
+    values
+    (#{tId,jdbcType=VARCHAR}, #{tName,jdbcType=VARCHAR}, #{tPass,jdbcType=VARCHAR}, #{tSex,jdbcType=VARCHAR}, 
+      #{tNation,jdbcType=VARCHAR}, #{tPolStat,jdbcType=VARCHAR}, #{tIdcard,jdbcType=VARCHAR}, 
+      #{tAddress,jdbcType=VARCHAR}, #{tJobTime,jdbcType=DATE}, #{tEduBg,jdbcType=VARCHAR}, 
+      #{tGraIns,jdbcType=VARCHAR}, #{tPhone,jdbcType=VARCHAR}, #{tCourse,jdbcType=VARCHAR}, 
+      #{tPicPath,jdbcType=VARCHAR}, #{delflag,jdbcType=BOOLEAN})
+    on duplicate key update 
+    t_id = #{tId,jdbcType=VARCHAR}, 
+    t_name = #{tName,jdbcType=VARCHAR}, 
+    t_pass = #{tPass,jdbcType=VARCHAR}, 
+    t_sex = #{tSex,jdbcType=VARCHAR}, 
+    t_nation = #{tNation,jdbcType=VARCHAR}, 
+    t_pol_stat = #{tPolStat,jdbcType=VARCHAR}, 
+    t_idcard = #{tIdcard,jdbcType=VARCHAR}, 
+    t_address = #{tAddress,jdbcType=VARCHAR}, 
+    t_job_time = #{tJobTime,jdbcType=DATE}, 
+    t_edu_bg = #{tEduBg,jdbcType=VARCHAR}, 
+    t_gra_ins = #{tGraIns,jdbcType=VARCHAR}, 
+    t_phone = #{tPhone,jdbcType=VARCHAR}, 
+    t_course = #{tCourse,jdbcType=VARCHAR}, 
+    t_pic_path = #{tPicPath,jdbcType=VARCHAR}, 
+    delflag = #{delflag,jdbcType=BOOLEAN}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.scfsoft.domain.SpTeacher">
+    <!--@mbg.generated-->
+    insert into sp_teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        t_id,
+      </if>
+      <if test="tName != null">
+        t_name,
+      </if>
+      <if test="tPass != null">
+        t_pass,
+      </if>
+      <if test="tSex != null">
+        t_sex,
+      </if>
+      <if test="tNation != null">
+        t_nation,
+      </if>
+      <if test="tPolStat != null">
+        t_pol_stat,
+      </if>
+      <if test="tIdcard != null">
+        t_idcard,
+      </if>
+      <if test="tAddress != null">
+        t_address,
+      </if>
+      <if test="tJobTime != null">
+        t_job_time,
+      </if>
+      <if test="tEduBg != null">
+        t_edu_bg,
+      </if>
+      <if test="tGraIns != null">
+        t_gra_ins,
+      </if>
+      <if test="tPhone != null">
+        t_phone,
+      </if>
+      <if test="tCourse != null">
+        t_course,
+      </if>
+      <if test="tPicPath != null">
+        t_pic_path,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tId != null">
+        #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="tName != null">
+        #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tPass != null">
+        #{tPass,jdbcType=VARCHAR},
+      </if>
+      <if test="tSex != null">
+        #{tSex,jdbcType=VARCHAR},
+      </if>
+      <if test="tNation != null">
+        #{tNation,jdbcType=VARCHAR},
+      </if>
+      <if test="tPolStat != null">
+        #{tPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="tIdcard != null">
+        #{tIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="tAddress != null">
+        #{tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tJobTime != null">
+        #{tJobTime,jdbcType=DATE},
+      </if>
+      <if test="tEduBg != null">
+        #{tEduBg,jdbcType=VARCHAR},
+      </if>
+      <if test="tGraIns != null">
+        #{tGraIns,jdbcType=VARCHAR},
+      </if>
+      <if test="tPhone != null">
+        #{tPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tCourse != null">
+        #{tCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="tPicPath != null">
+        #{tPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="tId != null">
+        t_id = #{tId,jdbcType=VARCHAR},
+      </if>
+      <if test="tName != null">
+        t_name = #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tPass != null">
+        t_pass = #{tPass,jdbcType=VARCHAR},
+      </if>
+      <if test="tSex != null">
+        t_sex = #{tSex,jdbcType=VARCHAR},
+      </if>
+      <if test="tNation != null">
+        t_nation = #{tNation,jdbcType=VARCHAR},
+      </if>
+      <if test="tPolStat != null">
+        t_pol_stat = #{tPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="tIdcard != null">
+        t_idcard = #{tIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="tAddress != null">
+        t_address = #{tAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="tJobTime != null">
+        t_job_time = #{tJobTime,jdbcType=DATE},
+      </if>
+      <if test="tEduBg != null">
+        t_edu_bg = #{tEduBg,jdbcType=VARCHAR},
+      </if>
+      <if test="tGraIns != null">
+        t_gra_ins = #{tGraIns,jdbcType=VARCHAR},
+      </if>
+      <if test="tPhone != null">
+        t_phone = #{tPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="tCourse != null">
+        t_course = #{tCourse,jdbcType=VARCHAR},
+      </if>
+      <if test="tPicPath != null">
+        t_pic_path = #{tPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+</mapper>

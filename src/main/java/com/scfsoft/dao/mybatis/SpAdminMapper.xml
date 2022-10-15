@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scfsoft.dao.mybatis.SpAdminMapper">
+  <resultMap id="BaseResultMap" type="com.scfsoft.domain.SpAdmin">
+    <!--@mbg.generated-->
+    <!--@Table sp_admin-->
+    <id column="admin_id" jdbcType="VARCHAR" property="adminId" />
+    <result column="admin_name" jdbcType="VARCHAR" property="adminName" />
+    <result column="admin_pass" jdbcType="VARCHAR" property="adminPass" />
+    <result column="reg_ip" jdbcType="VARCHAR" property="regIp" />
+    <result column="reg_time" jdbcType="VARCHAR" property="regTime" />
+    <result column="rel_t_id" jdbcType="VARCHAR" property="relTId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    admin_id, admin_name, admin_pass, reg_ip, reg_time, rel_t_id
+  </sql>
+  <select id="selectByExample" parameterType="com.scfsoft.domain.SpAdminExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sp_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sp_admin
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!--@mbg.generated-->
+    delete from sp_admin
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scfsoft.domain.SpAdminExample">
+    <!--@mbg.generated-->
+    delete from sp_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scfsoft.domain.SpAdmin">
+    <!--@mbg.generated-->
+    insert into sp_admin (admin_id, admin_name, admin_pass, 
+      reg_ip, reg_time, rel_t_id
+      )
+    values (#{adminId,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR}, 
+      #{regIp,jdbcType=VARCHAR}, #{regTime,jdbcType=VARCHAR}, #{relTId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scfsoft.domain.SpAdmin">
+    <!--@mbg.generated-->
+    insert into sp_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="adminPass != null">
+        admin_pass,
+      </if>
+      <if test="regIp != null">
+        reg_ip,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="relTId != null">
+        rel_t_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null">
+        #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="regIp != null">
+        #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=VARCHAR},
+      </if>
+      <if test="relTId != null">
+        #{relTId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scfsoft.domain.SpAdminExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from sp_admin
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update sp_admin
+    <set>
+      <if test="record.adminId != null">
+        admin_id = #{record.adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminName != null">
+        admin_name = #{record.adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminPass != null">
+        admin_pass = #{record.adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regIp != null">
+        reg_ip = #{record.regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.regTime != null">
+        reg_time = #{record.regTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relTId != null">
+        rel_t_id = #{record.relTId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update sp_admin
+    set admin_id = #{record.adminId,jdbcType=VARCHAR},
+      admin_name = #{record.adminName,jdbcType=VARCHAR},
+      admin_pass = #{record.adminPass,jdbcType=VARCHAR},
+      reg_ip = #{record.regIp,jdbcType=VARCHAR},
+      reg_time = #{record.regTime,jdbcType=VARCHAR},
+      rel_t_id = #{record.relTId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scfsoft.domain.SpAdmin">
+    <!--@mbg.generated-->
+    update sp_admin
+    <set>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null">
+        admin_pass = #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="regIp != null">
+        reg_ip = #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=VARCHAR},
+      </if>
+      <if test="relTId != null">
+        rel_t_id = #{relTId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scfsoft.domain.SpAdmin">
+    <!--@mbg.generated-->
+    update sp_admin
+    set admin_name = #{adminName,jdbcType=VARCHAR},
+      admin_pass = #{adminPass,jdbcType=VARCHAR},
+      reg_ip = #{regIp,jdbcType=VARCHAR},
+      reg_time = #{regTime,jdbcType=VARCHAR},
+      rel_t_id = #{relTId,jdbcType=VARCHAR}
+    where admin_id = #{adminId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sp_admin
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="admin_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.adminName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="admin_pass = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.adminPass,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="reg_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.regIp,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="reg_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.regTime,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="rel_t_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.relTId,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where admin_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.adminId,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sp_admin
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="admin_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminName != null">
+            when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.adminName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="admin_pass = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.adminPass != null">
+            when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.adminPass,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="reg_ip = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.regIp != null">
+            when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.regIp,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="reg_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.regTime != null">
+            when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.regTime,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="rel_t_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.relTId != null">
+            when admin_id = #{item.adminId,jdbcType=VARCHAR} then #{item.relTId,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where admin_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.adminId,jdbcType=VARCHAR}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into sp_admin
+    (admin_id, admin_name, admin_pass, reg_ip, reg_time, rel_t_id)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.adminId,jdbcType=VARCHAR}, #{item.adminName,jdbcType=VARCHAR}, #{item.adminPass,jdbcType=VARCHAR}, 
+        #{item.regIp,jdbcType=VARCHAR}, #{item.regTime,jdbcType=VARCHAR}, #{item.relTId,jdbcType=VARCHAR}
+        )
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.scfsoft.domain.SpAdmin">
+    <!--@mbg.generated-->
+    insert into sp_admin
+    (admin_id, admin_name, admin_pass, reg_ip, reg_time, rel_t_id)
+    values
+    (#{adminId,jdbcType=VARCHAR}, #{adminName,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR}, 
+      #{regIp,jdbcType=VARCHAR}, #{regTime,jdbcType=VARCHAR}, #{relTId,jdbcType=VARCHAR}
+      )
+    on duplicate key update 
+    admin_id = #{adminId,jdbcType=VARCHAR}, 
+    admin_name = #{adminName,jdbcType=VARCHAR}, 
+    admin_pass = #{adminPass,jdbcType=VARCHAR}, 
+    reg_ip = #{regIp,jdbcType=VARCHAR}, 
+    reg_time = #{regTime,jdbcType=VARCHAR}, 
+    rel_t_id = #{relTId,jdbcType=VARCHAR}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.scfsoft.domain.SpAdmin">
+    <!--@mbg.generated-->
+    insert into sp_admin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id,
+      </if>
+      <if test="adminName != null">
+        admin_name,
+      </if>
+      <if test="adminPass != null">
+        admin_pass,
+      </if>
+      <if test="regIp != null">
+        reg_ip,
+      </if>
+      <if test="regTime != null">
+        reg_time,
+      </if>
+      <if test="relTId != null">
+        rel_t_id,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adminId != null">
+        #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null">
+        #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="regIp != null">
+        #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        #{regTime,jdbcType=VARCHAR},
+      </if>
+      <if test="relTId != null">
+        #{relTId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="adminId != null">
+        admin_id = #{adminId,jdbcType=VARCHAR},
+      </if>
+      <if test="adminName != null">
+        admin_name = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null">
+        admin_pass = #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="regIp != null">
+        reg_ip = #{regIp,jdbcType=VARCHAR},
+      </if>
+      <if test="regTime != null">
+        reg_time = #{regTime,jdbcType=VARCHAR},
+      </if>
+      <if test="relTId != null">
+        rel_t_id = #{relTId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

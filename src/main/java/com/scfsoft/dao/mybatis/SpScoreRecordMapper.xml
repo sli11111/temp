@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scfsoft.dao.mybatis.SpScoreRecordMapper">
+  <resultMap id="BaseResultMap" type="com.scfsoft.domain.SpScoreRecord">
+    <!--@mbg.generated-->
+    <!--@Table sp_score_record-->
+    <id column="sr_stuid" jdbcType="INTEGER" property="srStuid" />
+    <id column="sr_courseid" jdbcType="VARCHAR" property="srCourseid" />
+    <id column="sr_examtime" jdbcType="VARCHAR" property="srExamtime" />
+    <result column="sr_gradeid" jdbcType="VARCHAR" property="srGradeid" />
+    <result column="sr_examtype" jdbcType="VARCHAR" property="srExamtype" />
+    <result column="sr_xueqi" jdbcType="INTEGER" property="srXueqi" />
+    <result column="sr_score" jdbcType="DOUBLE" property="srScore" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    sr_stuid, sr_courseid, sr_examtime, sr_gradeid, sr_examtype, sr_xueqi, sr_score
+  </sql>
+  <select id="selectByExample" parameterType="com.scfsoft.domain.SpScoreRecordExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sp_score_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sp_score_record
+    where sr_stuid = #{srStuid,jdbcType=INTEGER}
+      and sr_courseid = #{srCourseid,jdbcType=VARCHAR}
+      and sr_examtime = #{srExamtime,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="map">
+    <!--@mbg.generated-->
+    delete from sp_score_record
+    where sr_stuid = #{srStuid,jdbcType=INTEGER}
+      and sr_courseid = #{srCourseid,jdbcType=VARCHAR}
+      and sr_examtime = #{srExamtime,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scfsoft.domain.SpScoreRecordExample">
+    <!--@mbg.generated-->
+    delete from sp_score_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scfsoft.domain.SpScoreRecord">
+    <!--@mbg.generated-->
+    insert into sp_score_record (sr_stuid, sr_courseid, sr_examtime, 
+      sr_gradeid, sr_examtype, sr_xueqi, 
+      sr_score)
+    values (#{srStuid,jdbcType=INTEGER}, #{srCourseid,jdbcType=VARCHAR}, #{srExamtime,jdbcType=VARCHAR}, 
+      #{srGradeid,jdbcType=VARCHAR}, #{srExamtype,jdbcType=VARCHAR}, #{srXueqi,jdbcType=INTEGER}, 
+      #{srScore,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scfsoft.domain.SpScoreRecord">
+    <!--@mbg.generated-->
+    insert into sp_score_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="srStuid != null">
+        sr_stuid,
+      </if>
+      <if test="srCourseid != null">
+        sr_courseid,
+      </if>
+      <if test="srExamtime != null">
+        sr_examtime,
+      </if>
+      <if test="srGradeid != null">
+        sr_gradeid,
+      </if>
+      <if test="srExamtype != null">
+        sr_examtype,
+      </if>
+      <if test="srXueqi != null">
+        sr_xueqi,
+      </if>
+      <if test="srScore != null">
+        sr_score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="srStuid != null">
+        #{srStuid,jdbcType=INTEGER},
+      </if>
+      <if test="srCourseid != null">
+        #{srCourseid,jdbcType=VARCHAR},
+      </if>
+      <if test="srExamtime != null">
+        #{srExamtime,jdbcType=VARCHAR},
+      </if>
+      <if test="srGradeid != null">
+        #{srGradeid,jdbcType=VARCHAR},
+      </if>
+      <if test="srExamtype != null">
+        #{srExamtype,jdbcType=VARCHAR},
+      </if>
+      <if test="srXueqi != null">
+        #{srXueqi,jdbcType=INTEGER},
+      </if>
+      <if test="srScore != null">
+        #{srScore,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scfsoft.domain.SpScoreRecordExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from sp_score_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update sp_score_record
+    <set>
+      <if test="record.srStuid != null">
+        sr_stuid = #{record.srStuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.srCourseid != null">
+        sr_courseid = #{record.srCourseid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srExamtime != null">
+        sr_examtime = #{record.srExamtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srGradeid != null">
+        sr_gradeid = #{record.srGradeid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srExamtype != null">
+        sr_examtype = #{record.srExamtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.srXueqi != null">
+        sr_xueqi = #{record.srXueqi,jdbcType=INTEGER},
+      </if>
+      <if test="record.srScore != null">
+        sr_score = #{record.srScore,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update sp_score_record
+    set sr_stuid = #{record.srStuid,jdbcType=INTEGER},
+      sr_courseid = #{record.srCourseid,jdbcType=VARCHAR},
+      sr_examtime = #{record.srExamtime,jdbcType=VARCHAR},
+      sr_gradeid = #{record.srGradeid,jdbcType=VARCHAR},
+      sr_examtype = #{record.srExamtype,jdbcType=VARCHAR},
+      sr_xueqi = #{record.srXueqi,jdbcType=INTEGER},
+      sr_score = #{record.srScore,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scfsoft.domain.SpScoreRecord">
+    <!--@mbg.generated-->
+    update sp_score_record
+    <set>
+      <if test="srGradeid != null">
+        sr_gradeid = #{srGradeid,jdbcType=VARCHAR},
+      </if>
+      <if test="srExamtype != null">
+        sr_examtype = #{srExamtype,jdbcType=VARCHAR},
+      </if>
+      <if test="srXueqi != null">
+        sr_xueqi = #{srXueqi,jdbcType=INTEGER},
+      </if>
+      <if test="srScore != null">
+        sr_score = #{srScore,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where sr_stuid = #{srStuid,jdbcType=INTEGER}
+      and sr_courseid = #{srCourseid,jdbcType=VARCHAR}
+      and sr_examtime = #{srExamtime,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scfsoft.domain.SpScoreRecord">
+    <!--@mbg.generated-->
+    update sp_score_record
+    set sr_gradeid = #{srGradeid,jdbcType=VARCHAR},
+      sr_examtype = #{srExamtype,jdbcType=VARCHAR},
+      sr_xueqi = #{srXueqi,jdbcType=INTEGER},
+      sr_score = #{srScore,jdbcType=DOUBLE}
+    where sr_stuid = #{srStuid,jdbcType=INTEGER}
+      and sr_courseid = #{srCourseid,jdbcType=VARCHAR}
+      and sr_examtime = #{srExamtime,jdbcType=VARCHAR}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sp_score_record
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="sr_gradeid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when sr_stuid = #{item.srStuid,jdbcType=INTEGER} then #{item.srGradeid,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sr_examtype = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when sr_stuid = #{item.srStuid,jdbcType=INTEGER} then #{item.srExamtype,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="sr_xueqi = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when sr_stuid = #{item.srStuid,jdbcType=INTEGER} then #{item.srXueqi,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="sr_score = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when sr_stuid = #{item.srStuid,jdbcType=INTEGER} then #{item.srScore,jdbcType=DOUBLE}
+        </foreach>
+      </trim>
+    </trim>
+    where sr_stuid in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.srStuid,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sp_score_record
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="sr_gradeid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.srGradeid != null">
+            when sr_stuid = #{item.srStuid,jdbcType=INTEGER} then #{item.srGradeid,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sr_examtype = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.srExamtype != null">
+            when sr_stuid = #{item.srStuid,jdbcType=INTEGER} then #{item.srExamtype,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sr_xueqi = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.srXueqi != null">
+            when sr_stuid = #{item.srStuid,jdbcType=INTEGER} then #{item.srXueqi,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="sr_score = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.srScore != null">
+            when sr_stuid = #{item.srStuid,jdbcType=INTEGER} then #{item.srScore,jdbcType=DOUBLE}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where sr_stuid in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.srStuid,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into sp_score_record
+    (sr_stuid, sr_courseid, sr_examtime, sr_gradeid, sr_examtype, sr_xueqi, sr_score)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.srStuid,jdbcType=INTEGER}, #{item.srCourseid,jdbcType=VARCHAR}, #{item.srExamtime,jdbcType=VARCHAR}, 
+        #{item.srGradeid,jdbcType=VARCHAR}, #{item.srExamtype,jdbcType=VARCHAR}, #{item.srXueqi,jdbcType=INTEGER}, 
+        #{item.srScore,jdbcType=DOUBLE})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.scfsoft.domain.SpScoreRecord">
+    <!--@mbg.generated-->
+    insert into sp_score_record
+    (sr_stuid, sr_courseid, sr_examtime, sr_gradeid, sr_examtype, sr_xueqi, sr_score)
+    values
+    (#{srStuid,jdbcType=INTEGER}, #{srCourseid,jdbcType=VARCHAR}, #{srExamtime,jdbcType=VARCHAR}, 
+      #{srGradeid,jdbcType=VARCHAR}, #{srExamtype,jdbcType=VARCHAR}, #{srXueqi,jdbcType=INTEGER}, 
+      #{srScore,jdbcType=DOUBLE})
+    on duplicate key update 
+    sr_stuid = #{srStuid,jdbcType=INTEGER}, 
+    sr_courseid = #{srCourseid,jdbcType=VARCHAR}, 
+    sr_examtime = #{srExamtime,jdbcType=VARCHAR}, 
+    sr_gradeid = #{srGradeid,jdbcType=VARCHAR}, 
+    sr_examtype = #{srExamtype,jdbcType=VARCHAR}, 
+    sr_xueqi = #{srXueqi,jdbcType=INTEGER}, 
+    sr_score = #{srScore,jdbcType=DOUBLE}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.scfsoft.domain.SpScoreRecord">
+    <!--@mbg.generated-->
+    insert into sp_score_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="srStuid != null">
+        sr_stuid,
+      </if>
+      <if test="srCourseid != null">
+        sr_courseid,
+      </if>
+      <if test="srExamtime != null">
+        sr_examtime,
+      </if>
+      <if test="srGradeid != null">
+        sr_gradeid,
+      </if>
+      <if test="srExamtype != null">
+        sr_examtype,
+      </if>
+      <if test="srXueqi != null">
+        sr_xueqi,
+      </if>
+      <if test="srScore != null">
+        sr_score,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="srStuid != null">
+        #{srStuid,jdbcType=INTEGER},
+      </if>
+      <if test="srCourseid != null">
+        #{srCourseid,jdbcType=VARCHAR},
+      </if>
+      <if test="srExamtime != null">
+        #{srExamtime,jdbcType=VARCHAR},
+      </if>
+      <if test="srGradeid != null">
+        #{srGradeid,jdbcType=VARCHAR},
+      </if>
+      <if test="srExamtype != null">
+        #{srExamtype,jdbcType=VARCHAR},
+      </if>
+      <if test="srXueqi != null">
+        #{srXueqi,jdbcType=INTEGER},
+      </if>
+      <if test="srScore != null">
+        #{srScore,jdbcType=DOUBLE},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="srStuid != null">
+        sr_stuid = #{srStuid,jdbcType=INTEGER},
+      </if>
+      <if test="srCourseid != null">
+        sr_courseid = #{srCourseid,jdbcType=VARCHAR},
+      </if>
+      <if test="srExamtime != null">
+        sr_examtime = #{srExamtime,jdbcType=VARCHAR},
+      </if>
+      <if test="srGradeid != null">
+        sr_gradeid = #{srGradeid,jdbcType=VARCHAR},
+      </if>
+      <if test="srExamtype != null">
+        sr_examtype = #{srExamtype,jdbcType=VARCHAR},
+      </if>
+      <if test="srXueqi != null">
+        sr_xueqi = #{srXueqi,jdbcType=INTEGER},
+      </if>
+      <if test="srScore != null">
+        sr_score = #{srScore,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+</mapper>

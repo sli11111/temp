@@ -1,0 +1,751 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scfsoft.dao.mybatis.SpStudentMapper">
+  <resultMap id="BaseResultMap" type="com.scfsoft.domain.SpStudent">
+    <!--@mbg.generated-->
+    <!--@Table sp_student-->
+    <id column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="s_name" jdbcType="VARCHAR" property="sName" />
+    <result column="s_pass" jdbcType="VARCHAR" property="sPass" />
+    <result column="s_sex" jdbcType="VARCHAR" property="sSex" />
+    <result column="s_idcard" jdbcType="VARCHAR" property="sIdcard" />
+    <result column="s_address" jdbcType="VARCHAR" property="sAddress" />
+    <result column="s_nation" jdbcType="VARCHAR" property="sNation" />
+    <result column="s_pol_stat" jdbcType="VARCHAR" property="sPolStat" />
+    <result column="s_school_time" jdbcType="VARCHAR" property="sSchoolTime" />
+    <result column="s_household" jdbcType="VARCHAR" property="sHousehold" />
+    <result column="s_schoolmethod" jdbcType="VARCHAR" property="sSchoolmethod" />
+    <result column="s_class" jdbcType="VARCHAR" property="sClass" />
+    <result column="s_pic_path" jdbcType="VARCHAR" property="sPicPath" />
+    <result column="delflag" jdbcType="BOOLEAN" property="delflag" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <!--@mbg.generated-->
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    s_id, s_name, s_pass, s_sex, s_idcard, s_address, s_nation, s_pol_stat, s_school_time, 
+    s_household, s_schoolmethod, s_class, s_pic_path, delflag
+  </sql>
+  <select id="selectByExample" parameterType="com.scfsoft.domain.SpStudentExample" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sp_student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from sp_student
+    where s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from sp_student
+    where s_id = #{sId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scfsoft.domain.SpStudentExample">
+    <!--@mbg.generated-->
+    delete from sp_student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="s_id" keyProperty="sId" parameterType="com.scfsoft.domain.SpStudent" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sp_student (s_name, s_pass, s_sex, 
+      s_idcard, s_address, s_nation, 
+      s_pol_stat, s_school_time, s_household, 
+      s_schoolmethod, s_class, s_pic_path, 
+      delflag)
+    values (#{sName,jdbcType=VARCHAR}, #{sPass,jdbcType=VARCHAR}, #{sSex,jdbcType=VARCHAR}, 
+      #{sIdcard,jdbcType=VARCHAR}, #{sAddress,jdbcType=VARCHAR}, #{sNation,jdbcType=VARCHAR}, 
+      #{sPolStat,jdbcType=VARCHAR}, #{sSchoolTime,jdbcType=VARCHAR}, #{sHousehold,jdbcType=VARCHAR}, 
+      #{sSchoolmethod,jdbcType=VARCHAR}, #{sClass,jdbcType=VARCHAR}, #{sPicPath,jdbcType=VARCHAR}, 
+      #{delflag,jdbcType=BOOLEAN})
+  </insert>
+  <insert id="insertSelective" keyColumn="s_id" keyProperty="sId" parameterType="com.scfsoft.domain.SpStudent" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sp_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sName != null">
+        s_name,
+      </if>
+      <if test="sPass != null">
+        s_pass,
+      </if>
+      <if test="sSex != null">
+        s_sex,
+      </if>
+      <if test="sIdcard != null">
+        s_idcard,
+      </if>
+      <if test="sAddress != null">
+        s_address,
+      </if>
+      <if test="sNation != null">
+        s_nation,
+      </if>
+      <if test="sPolStat != null">
+        s_pol_stat,
+      </if>
+      <if test="sSchoolTime != null">
+        s_school_time,
+      </if>
+      <if test="sHousehold != null">
+        s_household,
+      </if>
+      <if test="sSchoolmethod != null">
+        s_schoolmethod,
+      </if>
+      <if test="sClass != null">
+        s_class,
+      </if>
+      <if test="sPicPath != null">
+        s_pic_path,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sName != null">
+        #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sPass != null">
+        #{sPass,jdbcType=VARCHAR},
+      </if>
+      <if test="sSex != null">
+        #{sSex,jdbcType=VARCHAR},
+      </if>
+      <if test="sIdcard != null">
+        #{sIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sAddress != null">
+        #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sNation != null">
+        #{sNation,jdbcType=VARCHAR},
+      </if>
+      <if test="sPolStat != null">
+        #{sPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="sSchoolTime != null">
+        #{sSchoolTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sHousehold != null">
+        #{sHousehold,jdbcType=VARCHAR},
+      </if>
+      <if test="sSchoolmethod != null">
+        #{sSchoolmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="sClass != null">
+        #{sClass,jdbcType=VARCHAR},
+      </if>
+      <if test="sPicPath != null">
+        #{sPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scfsoft.domain.SpStudentExample" resultType="java.lang.Long">
+    <!--@mbg.generated-->
+    select count(*) from sp_student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    <!--@mbg.generated-->
+    update sp_student
+    <set>
+      <if test="record.sId != null">
+        s_id = #{record.sId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sName != null">
+        s_name = #{record.sName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sPass != null">
+        s_pass = #{record.sPass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sSex != null">
+        s_sex = #{record.sSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sIdcard != null">
+        s_idcard = #{record.sIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sAddress != null">
+        s_address = #{record.sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sNation != null">
+        s_nation = #{record.sNation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sPolStat != null">
+        s_pol_stat = #{record.sPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sSchoolTime != null">
+        s_school_time = #{record.sSchoolTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sHousehold != null">
+        s_household = #{record.sHousehold,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sSchoolmethod != null">
+        s_schoolmethod = #{record.sSchoolmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sClass != null">
+        s_class = #{record.sClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sPicPath != null">
+        s_pic_path = #{record.sPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delflag != null">
+        delflag = #{record.delflag,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    <!--@mbg.generated-->
+    update sp_student
+    set s_id = #{record.sId,jdbcType=INTEGER},
+      s_name = #{record.sName,jdbcType=VARCHAR},
+      s_pass = #{record.sPass,jdbcType=VARCHAR},
+      s_sex = #{record.sSex,jdbcType=VARCHAR},
+      s_idcard = #{record.sIdcard,jdbcType=VARCHAR},
+      s_address = #{record.sAddress,jdbcType=VARCHAR},
+      s_nation = #{record.sNation,jdbcType=VARCHAR},
+      s_pol_stat = #{record.sPolStat,jdbcType=VARCHAR},
+      s_school_time = #{record.sSchoolTime,jdbcType=VARCHAR},
+      s_household = #{record.sHousehold,jdbcType=VARCHAR},
+      s_schoolmethod = #{record.sSchoolmethod,jdbcType=VARCHAR},
+      s_class = #{record.sClass,jdbcType=VARCHAR},
+      s_pic_path = #{record.sPicPath,jdbcType=VARCHAR},
+      delflag = #{record.delflag,jdbcType=BOOLEAN}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scfsoft.domain.SpStudent">
+    <!--@mbg.generated-->
+    update sp_student
+    <set>
+      <if test="sName != null">
+        s_name = #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sPass != null">
+        s_pass = #{sPass,jdbcType=VARCHAR},
+      </if>
+      <if test="sSex != null">
+        s_sex = #{sSex,jdbcType=VARCHAR},
+      </if>
+      <if test="sIdcard != null">
+        s_idcard = #{sIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sAddress != null">
+        s_address = #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sNation != null">
+        s_nation = #{sNation,jdbcType=VARCHAR},
+      </if>
+      <if test="sPolStat != null">
+        s_pol_stat = #{sPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="sSchoolTime != null">
+        s_school_time = #{sSchoolTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sHousehold != null">
+        s_household = #{sHousehold,jdbcType=VARCHAR},
+      </if>
+      <if test="sSchoolmethod != null">
+        s_schoolmethod = #{sSchoolmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="sClass != null">
+        s_class = #{sClass,jdbcType=VARCHAR},
+      </if>
+      <if test="sPicPath != null">
+        s_pic_path = #{sPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=BOOLEAN},
+      </if>
+    </set>
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scfsoft.domain.SpStudent">
+    <!--@mbg.generated-->
+    update sp_student
+    set s_name = #{sName,jdbcType=VARCHAR},
+      s_pass = #{sPass,jdbcType=VARCHAR},
+      s_sex = #{sSex,jdbcType=VARCHAR},
+      s_idcard = #{sIdcard,jdbcType=VARCHAR},
+      s_address = #{sAddress,jdbcType=VARCHAR},
+      s_nation = #{sNation,jdbcType=VARCHAR},
+      s_pol_stat = #{sPolStat,jdbcType=VARCHAR},
+      s_school_time = #{sSchoolTime,jdbcType=VARCHAR},
+      s_household = #{sHousehold,jdbcType=VARCHAR},
+      s_schoolmethod = #{sSchoolmethod,jdbcType=VARCHAR},
+      s_class = #{sClass,jdbcType=VARCHAR},
+      s_pic_path = #{sPicPath,jdbcType=VARCHAR},
+      delflag = #{delflag,jdbcType=BOOLEAN}
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sp_student
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="s_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_pass = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sPass,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_sex = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sSex,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_idcard = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sIdcard,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sAddress,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_nation = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sNation,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_pol_stat = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sPolStat,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_school_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sSchoolTime,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_household = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sHousehold,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_schoolmethod = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sSchoolmethod,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_class = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sClass,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="s_pic_path = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sPicPath,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="delflag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when s_id = #{item.sId,jdbcType=INTEGER} then #{item.delflag,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+    </trim>
+    where s_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.sId,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sp_student
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="s_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sName != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_pass = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sPass != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sPass,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_sex = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sSex != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sSex,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_idcard = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sIdcard != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sIdcard,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_address = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sAddress != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sAddress,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_nation = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sNation != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sNation,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_pol_stat = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sPolStat != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sPolStat,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_school_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sSchoolTime != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sSchoolTime,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_household = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sHousehold != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sHousehold,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_schoolmethod = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sSchoolmethod != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sSchoolmethod,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_class = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sClass != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sClass,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="s_pic_path = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.sPicPath != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.sPicPath,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="delflag = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.delflag != null">
+            when s_id = #{item.sId,jdbcType=INTEGER} then #{item.delflag,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where s_id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.sId,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="s_id" keyProperty="sId" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sp_student
+    (s_name, s_pass, s_sex, s_idcard, s_address, s_nation, s_pol_stat, s_school_time, 
+      s_household, s_schoolmethod, s_class, s_pic_path, delflag)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.sName,jdbcType=VARCHAR}, #{item.sPass,jdbcType=VARCHAR}, #{item.sSex,jdbcType=VARCHAR}, 
+        #{item.sIdcard,jdbcType=VARCHAR}, #{item.sAddress,jdbcType=VARCHAR}, #{item.sNation,jdbcType=VARCHAR}, 
+        #{item.sPolStat,jdbcType=VARCHAR}, #{item.sSchoolTime,jdbcType=VARCHAR}, #{item.sHousehold,jdbcType=VARCHAR}, 
+        #{item.sSchoolmethod,jdbcType=VARCHAR}, #{item.sClass,jdbcType=VARCHAR}, #{item.sPicPath,jdbcType=VARCHAR}, 
+        #{item.delflag,jdbcType=BOOLEAN})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="s_id" keyProperty="sId" parameterType="com.scfsoft.domain.SpStudent" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sp_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        s_id,
+      </if>
+      s_name,
+      s_pass,
+      s_sex,
+      s_idcard,
+      s_address,
+      s_nation,
+      s_pol_stat,
+      s_school_time,
+      s_household,
+      s_schoolmethod,
+      s_class,
+      s_pic_path,
+      delflag,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        #{sId,jdbcType=INTEGER},
+      </if>
+      #{sName,jdbcType=VARCHAR},
+      #{sPass,jdbcType=VARCHAR},
+      #{sSex,jdbcType=VARCHAR},
+      #{sIdcard,jdbcType=VARCHAR},
+      #{sAddress,jdbcType=VARCHAR},
+      #{sNation,jdbcType=VARCHAR},
+      #{sPolStat,jdbcType=VARCHAR},
+      #{sSchoolTime,jdbcType=VARCHAR},
+      #{sHousehold,jdbcType=VARCHAR},
+      #{sSchoolmethod,jdbcType=VARCHAR},
+      #{sClass,jdbcType=VARCHAR},
+      #{sPicPath,jdbcType=VARCHAR},
+      #{delflag,jdbcType=BOOLEAN},
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="sId != null">
+        s_id = #{sId,jdbcType=INTEGER},
+      </if>
+      s_name = #{sName,jdbcType=VARCHAR},
+      s_pass = #{sPass,jdbcType=VARCHAR},
+      s_sex = #{sSex,jdbcType=VARCHAR},
+      s_idcard = #{sIdcard,jdbcType=VARCHAR},
+      s_address = #{sAddress,jdbcType=VARCHAR},
+      s_nation = #{sNation,jdbcType=VARCHAR},
+      s_pol_stat = #{sPolStat,jdbcType=VARCHAR},
+      s_school_time = #{sSchoolTime,jdbcType=VARCHAR},
+      s_household = #{sHousehold,jdbcType=VARCHAR},
+      s_schoolmethod = #{sSchoolmethod,jdbcType=VARCHAR},
+      s_class = #{sClass,jdbcType=VARCHAR},
+      s_pic_path = #{sPicPath,jdbcType=VARCHAR},
+      delflag = #{delflag,jdbcType=BOOLEAN},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="s_id" keyProperty="sId" parameterType="com.scfsoft.domain.SpStudent" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into sp_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        s_id,
+      </if>
+      <if test="sName != null">
+        s_name,
+      </if>
+      <if test="sPass != null">
+        s_pass,
+      </if>
+      <if test="sSex != null">
+        s_sex,
+      </if>
+      <if test="sIdcard != null">
+        s_idcard,
+      </if>
+      <if test="sAddress != null">
+        s_address,
+      </if>
+      <if test="sNation != null">
+        s_nation,
+      </if>
+      <if test="sPolStat != null">
+        s_pol_stat,
+      </if>
+      <if test="sSchoolTime != null">
+        s_school_time,
+      </if>
+      <if test="sHousehold != null">
+        s_household,
+      </if>
+      <if test="sSchoolmethod != null">
+        s_schoolmethod,
+      </if>
+      <if test="sClass != null">
+        s_class,
+      </if>
+      <if test="sPicPath != null">
+        s_pic_path,
+      </if>
+      <if test="delflag != null">
+        delflag,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="sName != null">
+        #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sPass != null">
+        #{sPass,jdbcType=VARCHAR},
+      </if>
+      <if test="sSex != null">
+        #{sSex,jdbcType=VARCHAR},
+      </if>
+      <if test="sIdcard != null">
+        #{sIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sAddress != null">
+        #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sNation != null">
+        #{sNation,jdbcType=VARCHAR},
+      </if>
+      <if test="sPolStat != null">
+        #{sPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="sSchoolTime != null">
+        #{sSchoolTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sHousehold != null">
+        #{sHousehold,jdbcType=VARCHAR},
+      </if>
+      <if test="sSchoolmethod != null">
+        #{sSchoolmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="sClass != null">
+        #{sClass,jdbcType=VARCHAR},
+      </if>
+      <if test="sPicPath != null">
+        #{sPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        #{delflag,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="sId != null">
+        s_id = #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="sName != null">
+        s_name = #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sPass != null">
+        s_pass = #{sPass,jdbcType=VARCHAR},
+      </if>
+      <if test="sSex != null">
+        s_sex = #{sSex,jdbcType=VARCHAR},
+      </if>
+      <if test="sIdcard != null">
+        s_idcard = #{sIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="sAddress != null">
+        s_address = #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sNation != null">
+        s_nation = #{sNation,jdbcType=VARCHAR},
+      </if>
+      <if test="sPolStat != null">
+        s_pol_stat = #{sPolStat,jdbcType=VARCHAR},
+      </if>
+      <if test="sSchoolTime != null">
+        s_school_time = #{sSchoolTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sHousehold != null">
+        s_household = #{sHousehold,jdbcType=VARCHAR},
+      </if>
+      <if test="sSchoolmethod != null">
+        s_schoolmethod = #{sSchoolmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="sClass != null">
+        s_class = #{sClass,jdbcType=VARCHAR},
+      </if>
+      <if test="sPicPath != null">
+        s_pic_path = #{sPicPath,jdbcType=VARCHAR},
+      </if>
+      <if test="delflag != null">
+        delflag = #{delflag,jdbcType=BOOLEAN},
+      </if>
+    </trim>
+  </insert>
+</mapper>
